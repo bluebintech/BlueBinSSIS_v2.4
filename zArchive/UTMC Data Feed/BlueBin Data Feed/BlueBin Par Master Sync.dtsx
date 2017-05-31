@@ -1,0 +1,3088 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/29/2015 2:57:44 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="etl.bluebin.com"
+  DTS:CreatorName="gbutler"
+  DTS:DTSID="{A014C1C2-BBA2-465D-9225-56C94696B613}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2430.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="BlueBin Par Master Sync"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{29FB54B1-59DE-45E8-828A-EF7BF038D76A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BlueBin]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{351ec963-5b99-4995-90ad-ffbe7d13496c}"
+      DTS:ObjectName="BlueBin">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=etl.bluebin.com;User ID=BlueBin_ETLUser;Initial Catalog=UTMC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package1-{7318C27E-ABC5-46F5-A8B5-87ECCE854D5B}etl.bluebin.com.MHS_TEST.bluebindba;Use Encryption for Data=True;Trust Server Certificate=True;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAATRlvNeRD70am5hCVSKfr9QAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAA+gKn+5aJov/SuqubOSQphaoWOFGquBFAvOLdEdmr2jgAAAAAOgAAAAAIAACAAAABMpKSr18DxJ0Qpk0mcdzep1zxbqRkaqQ09qT04T/iOHiAAAACbMgXnua4Ox0iTKN5zI7k/d/4c+v7G/NY2GZhqIJeBRUAAAABKK/iImwMqRWh/6p4xqRPc3OuR/+PKcTBBYh6lon+dxDTgghPuF/7AOjqvn3Pjx1FTEz2KE57KBAEeWLY+0iVC</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Client]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{b66cc426-7910-4b7e-853f-ae46e50c431b}"
+      DTS:ObjectName="Client">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=etl.bluebin.com;User ID=BlueBin_ETLUser;Initial Catalog=UTMC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package1-{429EC103-4A63-48CA-9F23-F18EB7612E16}law10sql.LSFPROD.lawsondb;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAATRlvNeRD70am5hCVSKfr9QAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACjQnDejCFXziRncSl8zcKEzb1pdaR4vwPdvqySqeknWAAAAAAOgAAAAAIAACAAAABhzCyOhDbujDzrnwuRmkFnkjST4XN76HjNNOir2HaCRSAAAACW4sYuZ2gYsUi0kQYSnAq52pBMSMgRYcBvumbnv0d2kUAAAAA/rW8Kz0GJPqLLhq+IXA0lhFLT395DG3XyLM2LuZLYlVDksvvO7Lke14ORt1oS+6VO3ui+NiVMBOUxhlFwBQN6</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="D:\PACKAGES\UTMC Data Feed\BlueBin_Config.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{B5E93D72-9CAA-478E-9E95-FC7ACE0A2E64}"
+      DTS:ObjectName="BlueBin_Config" />
+  </DTS:Configurations>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="BlueBin"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{AC1943F7-B7EC-48BD-98BB-7D4AC827B3DD}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">5,7,OnError,13,OnInformation,18,OnPipelineRowsSent,10,OnProgress,12,OnTaskFailed</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{AC1943F7-B7EC-48BD-98BB-7D4AC827B3DD}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ITEMLOC"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{e7841d37-3241-4640-ae26-053a04fe25cf}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ITEMLOC"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\ITEMLOC\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Evaluates and directs rows in a dataset."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[GL_CATEGORY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="GL_CATEGORY"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[GL_CATEGORY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[UOM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="UOM"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UOM]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[SOH_QTY]"
+                      cachedDataType="numeric"
+                      cachedName="SOH_QTY"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[SOH_QTY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[PREFER_BIN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="PREFER_BIN"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[PREFER_BIN]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[MIN_ORDER]"
+                      cachedDataType="numeric"
+                      cachedName="MIN_ORDER"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MIN_ORDER]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[MAX_ORDER]"
+                      cachedDataType="numeric"
+                      cachedName="MAX_ORDER"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MAX_ORDER]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[REORDER_QTY]"
+                      cachedDataType="numeric"
+                      cachedName="REORDER_QTY"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_QTY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[REORDER_POINT]"
+                      cachedDataType="numeric"
+                      cachedName="REORDER_POINT"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_POINT]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[LEADTIME_DAYS]"
+                      cachedDataType="i2"
+                      cachedName="LEADTIME_DAYS"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LEADTIME_DAYS]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[LAST_ISSUE_DT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LAST_ISSUE_DT"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISSUE_DT]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[LAST_ISS_COST]"
+                      cachedDataType="numeric"
+                      cachedName="LAST_ISS_COST"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISS_COST]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[AVERAGE_COST]"
+                      cachedDataType="numeric"
+                      cachedName="AVERAGE_COST"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[AVERAGE_COST]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[ACTIVE_STATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="ACTIVE_STATUS"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ACTIVE_STATUS]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[USER_FIELD1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="USER_FIELD1"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD1]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[USER_FIELD2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="USER_FIELD2"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD2]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[USER_FIELD3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="USER_FIELD3"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD3]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[USER_FIELD_N1]"
+                      cachedDataType="numeric"
+                      cachedName="USER_FIELD_N1"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N1]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[USER_FIELD_N2]"
+                      cachedDataType="numeric"
+                      cachedName="USER_FIELD_N2"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N2]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[USER_FIELD_N3]"
+                      cachedDataType="numeric"
+                      cachedName="USER_FIELD_N3"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N3]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[CONSIGNMENT_FL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="CONSIGNMENT_FL"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[CONSIGNMENT_FL]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[UPDATE_TIME]"
+                      cachedDataType="i4"
+                      cachedName="UPDATE_TIME"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UPDATE_TIME]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_GL_CATEGORY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="DEST_GL_CATEGORY"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_GL_CATEGORY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_UOM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="DEST_UOM"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_UOM]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_SOH_QTY]"
+                      cachedDataType="numeric"
+                      cachedName="DEST_SOH_QTY"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_SOH_QTY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_PREFER_BIN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="DEST_PREFER_BIN"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_PREFER_BIN]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_MIN_ORDER]"
+                      cachedDataType="numeric"
+                      cachedName="DEST_MIN_ORDER"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_MIN_ORDER]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_MAX_ORDER]"
+                      cachedDataType="numeric"
+                      cachedName="DEST_MAX_ORDER"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_MAX_ORDER]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_REORDER_QTY]"
+                      cachedDataType="numeric"
+                      cachedName="DEST_REORDER_QTY"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_REORDER_QTY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_REORDER_POINT]"
+                      cachedDataType="numeric"
+                      cachedName="DEST_REORDER_POINT"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_REORDER_POINT]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_LEADTIME_DAYS]"
+                      cachedDataType="i2"
+                      cachedName="DEST_LEADTIME_DAYS"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LEADTIME_DAYS]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_LAST_ISSUE_DT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DEST_LAST_ISSUE_DT"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LAST_ISSUE_DT]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_UPDATE_TIME]"
+                      cachedDataType="i4"
+                      cachedName="DEST_UPDATE_TIME"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_UPDATE_TIME]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_LAST_ISS_COST]"
+                      cachedDataType="numeric"
+                      cachedName="DEST_LAST_ISS_COST"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LAST_ISS_COST]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_AVERAGE_COST]"
+                      cachedDataType="numeric"
+                      cachedName="DEST_AVERAGE_COST"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_AVERAGE_COST]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_ACTIVE_STATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="DEST_ACTIVE_STATUS"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_ACTIVE_STATUS]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_USER_FIELD1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="DEST_USER_FIELD1"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD1]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_USER_FIELD2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="DEST_USER_FIELD2"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD2]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_USER_FIELD3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="DEST_USER_FIELD3"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD3]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_USER_FIELD_N1]"
+                      cachedDataType="numeric"
+                      cachedName="DEST_USER_FIELD_N1"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N1]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_USER_FIELD_N2]"
+                      cachedDataType="numeric"
+                      cachedName="DEST_USER_FIELD_N2"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N2]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_USER_FIELD_N3]"
+                      cachedDataType="numeric"
+                      cachedName="DEST_USER_FIELD_N3"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N3]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_CONSIGNMENT_FL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="DEST_CONSIGNMENT_FL"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_CONSIGNMENT_FL]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_COMPANY]"
+                      cachedDataType="i2"
+                      cachedName="DEST_COMPANY"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_COMPANY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_LOCATION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="DEST_LOCATION"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LOCATION]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input].Columns[DEST_ITEM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="32"
+                      cachedName="DEST_ITEM"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_ITEM]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ITEMLOC\Conditional Split.Outputs[New Rows]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="New Rows"
+                  synchronousInputId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_COMPANY]}) || [ISNULL](#{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LOCATION]}) || [ISNULL](#{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_ITEM]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(DEST_COMPANY) || ISNULL(DEST_LOCATION) || ISNULL(DEST_ITEM)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ITEMLOC\Conditional Split.Outputs[Changed Rows]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Changed Rows"
+                  synchronousInputId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">(#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[GL_CATEGORY]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_GL_CATEGORY]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UOM]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_UOM]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[SOH_QTY]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_SOH_QTY]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[PREFER_BIN]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_PREFER_BIN]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MIN_ORDER]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_MIN_ORDER]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MAX_ORDER]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_MAX_ORDER]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_QTY]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_REORDER_QTY]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_POINT]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_REORDER_POINT]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LEADTIME_DAYS]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LEADTIME_DAYS]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISSUE_DT]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LAST_ISSUE_DT]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UPDATE_TIME]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_UPDATE_TIME]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISS_COST]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LAST_ISS_COST]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[AVERAGE_COST]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_AVERAGE_COST]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ACTIVE_STATUS]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_ACTIVE_STATUS]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD1]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD1]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD2]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD2]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD3]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD3]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N1]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N1]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N2]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N2]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N3]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N3]}) || (#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[CONSIGNMENT_FL]} != #{Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_CONSIGNMENT_FL]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(GL_CATEGORY != DEST_GL_CATEGORY) || (UOM != DEST_UOM) || (SOH_QTY != DEST_SOH_QTY) || (PREFER_BIN != DEST_PREFER_BIN) || (MIN_ORDER != DEST_MIN_ORDER) || (MAX_ORDER != DEST_MAX_ORDER) || (REORDER_QTY != DEST_REORDER_QTY) || (REORDER_POINT != DEST_REORDER_POINT) || (LEADTIME_DAYS != DEST_LEADTIME_DAYS) || (LAST_ISSUE_DT != DEST_LAST_ISSUE_DT) || (UPDATE_TIME != DEST_UPDATE_TIME) || (LAST_ISS_COST != DEST_LAST_ISS_COST) || (AVERAGE_COST != DEST_AVERAGE_COST) || (ACTIVE_STATUS != DEST_ACTIVE_STATUS) || (USER_FIELD1 != DEST_USER_FIELD1) || (USER_FIELD2 != DEST_USER_FIELD2) || (USER_FIELD3 != DEST_USER_FIELD3) || (USER_FIELD_N1 != DEST_USER_FIELD_N1) || (USER_FIELD_N2 != DEST_USER_FIELD_N2) || (USER_FIELD_N3 != DEST_USER_FIELD_N3) || (CONSIGNMENT_FL != DEST_CONSIGNMENT_FL)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ITEMLOC\Conditional Split.Outputs[Unchanged Rows]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Unchanged Rows"
+                  synchronousInputId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ITEMLOC\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ITEMLOC\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ITEMLOC\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ITEMLOC\Insert New Rows"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert New Rows"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ITEMLOC]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ITEMLOC\Insert New Rows.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BlueBin]"
+                  connectionManagerRefId="Package.ConnectionManagers[BlueBin]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[COMPANY]"
+                      cachedDataType="i2"
+                      cachedName="COMPANY"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[COMPANY]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[COMPANY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[LOCATION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="LOCATION"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[LOCATION]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LOCATION]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[ITEM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="32"
+                      cachedName="ITEM"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[ITEM]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ITEM]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[GL_CATEGORY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="GL_CATEGORY"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[GL_CATEGORY]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[GL_CATEGORY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[UOM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="UOM"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[UOM]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UOM]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[SOH_QTY]"
+                      cachedDataType="numeric"
+                      cachedName="SOH_QTY"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[SOH_QTY]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[SOH_QTY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[PREFER_BIN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="PREFER_BIN"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[PREFER_BIN]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[PREFER_BIN]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[MIN_ORDER]"
+                      cachedDataType="numeric"
+                      cachedName="MIN_ORDER"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[MIN_ORDER]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MIN_ORDER]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[MAX_ORDER]"
+                      cachedDataType="numeric"
+                      cachedName="MAX_ORDER"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[MAX_ORDER]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MAX_ORDER]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[REORDER_QTY]"
+                      cachedDataType="numeric"
+                      cachedName="REORDER_QTY"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[REORDER_QTY]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_QTY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[REORDER_POINT]"
+                      cachedDataType="numeric"
+                      cachedName="REORDER_POINT"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[REORDER_POINT]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_POINT]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[LEADTIME_DAYS]"
+                      cachedDataType="i2"
+                      cachedName="LEADTIME_DAYS"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[LEADTIME_DAYS]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LEADTIME_DAYS]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[LAST_ISSUE_DT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LAST_ISSUE_DT"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[LAST_ISSUE_DT]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISSUE_DT]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[LAST_ISS_COST]"
+                      cachedDataType="numeric"
+                      cachedName="LAST_ISS_COST"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[LAST_ISS_COST]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISS_COST]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[AVERAGE_COST]"
+                      cachedDataType="numeric"
+                      cachedName="AVERAGE_COST"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[AVERAGE_COST]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[AVERAGE_COST]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[ADDED_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ADDED_DATE"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[ADDED_DATE]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ADDED_DATE]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[ACTIVE_STATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="ACTIVE_STATUS"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[ACTIVE_STATUS]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ACTIVE_STATUS]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[USER_FIELD1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="USER_FIELD1"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD1]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD1]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[USER_FIELD2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="USER_FIELD2"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD2]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD2]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[USER_FIELD3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="USER_FIELD3"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD3]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD3]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[USER_FIELD_N1]"
+                      cachedDataType="numeric"
+                      cachedName="USER_FIELD_N1"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD_N1]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N1]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[USER_FIELD_N2]"
+                      cachedDataType="numeric"
+                      cachedName="USER_FIELD_N2"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD_N2]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N2]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[USER_FIELD_N3]"
+                      cachedDataType="numeric"
+                      cachedName="USER_FIELD_N3"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD_N3]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N3]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[CONSIGNMENT_FL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="CONSIGNMENT_FL"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[CONSIGNMENT_FL]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[CONSIGNMENT_FL]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].Columns[UPDATE_TIME]"
+                      cachedDataType="i4"
+                      cachedName="UPDATE_TIME"
+                      externalMetadataColumnId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[UPDATE_TIME]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UPDATE_TIME]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[COMPANY]"
+                      dataType="i2"
+                      name="COMPANY" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[LOCATION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="LOCATION" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[ITEM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="ITEM" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[GL_CATEGORY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="GL_CATEGORY" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[UOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="UOM" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[SOH_QTY]"
+                      dataType="numeric"
+                      name="SOH_QTY"
+                      precision="13"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[PREFER_BIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="PREFER_BIN" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[MIN_ORDER]"
+                      dataType="numeric"
+                      name="MIN_ORDER"
+                      precision="13"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[MAX_ORDER]"
+                      dataType="numeric"
+                      name="MAX_ORDER"
+                      precision="13"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[REORDER_QTY]"
+                      dataType="numeric"
+                      name="REORDER_QTY"
+                      precision="13"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[REORDER_POINT]"
+                      dataType="numeric"
+                      name="REORDER_POINT"
+                      precision="13"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[LEADTIME_DAYS]"
+                      dataType="i2"
+                      name="LEADTIME_DAYS" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[LAST_ISSUE_DT]"
+                      dataType="dbTimeStamp"
+                      name="LAST_ISSUE_DT" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[UPDATE_TIME]"
+                      dataType="i4"
+                      name="UPDATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[LAST_ISS_COST]"
+                      dataType="numeric"
+                      name="LAST_ISS_COST"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[AVERAGE_COST]"
+                      dataType="numeric"
+                      name="AVERAGE_COST"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[ADDED_DATE]"
+                      dataType="dbTimeStamp"
+                      name="ADDED_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[ACTIVE_STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ACTIVE_STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="USER_FIELD1" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="USER_FIELD2" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="USER_FIELD3" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD_N1]"
+                      dataType="numeric"
+                      name="USER_FIELD_N1"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD_N2]"
+                      dataType="numeric"
+                      name="USER_FIELD_N2"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[USER_FIELD_N3]"
+                      dataType="numeric"
+                      name="USER_FIELD_N3"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input].ExternalColumns[CONSIGNMENT_FL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="CONSIGNMENT_FL" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ITEMLOC\Insert New Rows.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ITEMLOC\Insert New Rows.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Insert New Rows.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ITEMLOC\Insert New Rows.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ITEMLOC\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+              description="Looks up values in a reference dataset by using exact matching."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[ITEMLOC]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[ITEMLOC]) [refTable]
+where [refTable].[COMPANY] = ? and [refTable].[LOCATION] = ? and [refTable].[ITEM] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="COMPANY" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LOCATION" dataType="DT_STR" length="5" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ITEM" dataType="DT_STR" length="32" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="GL_CATEGORY" dataType="DT_STR" length="4" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="UOM" dataType="DT_STR" length="4" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="SOH_QTY" dataType="DT_NUMERIC" length="0" precision="13" scale="4" codePage="0"/&gt;&lt;referenceColumn name="PREFER_BIN" dataType="DT_STR" length="7" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="MIN_ORDER" dataType="DT_NUMERIC" length="0" precision="13" scale="4" codePage="0"/&gt;&lt;referenceColumn name="MAX_ORDER" dataType="DT_NUMERIC" length="0" precision="13" scale="4" codePage="0"/&gt;&lt;referenceColumn name="REORDER_QTY" dataType="DT_NUMERIC" length="0" precision="13" scale="4" codePage="0"/&gt;&lt;referenceColumn name="REORDER_POINT" dataType="DT_NUMERIC" length="0" precision="13" scale="4" codePage="0"/&gt;&lt;referenceColumn name="LEADTIME_DAYS" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LAST_ISSUE_DT" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="UPDATE_TIME" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LAST_ISS_COST" dataType="DT_NUMERIC" length="0" precision="18" scale="5" codePage="0"/&gt;&lt;referenceColumn name="AVERAGE_COST" dataType="DT_NUMERIC" length="0" precision="18" scale="5" codePage="0"/&gt;&lt;referenceColumn name="ADDED_DATE" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ACTIVE_STATUS" dataType="DT_STR" length="1" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="USER_FIELD1" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="USER_FIELD2" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="USER_FIELD3" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="USER_FIELD_N1" dataType="DT_NUMERIC" length="0" precision="18" scale="5" codePage="0"/&gt;&lt;referenceColumn name="USER_FIELD_N2" dataType="DT_NUMERIC" length="0" precision="18" scale="5" codePage="0"/&gt;&lt;referenceColumn name="USER_FIELD_N3" dataType="DT_NUMERIC" length="0" precision="18" scale="5" codePage="0"/&gt;&lt;referenceColumn name="CONSIGNMENT_FL" dataType="DT_STR" length="1" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[COMPANY]};#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LOCATION]};#{Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ITEM]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ITEMLOC\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BlueBin]"
+                  connectionManagerRefId="Package.ConnectionManagers[BlueBin]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ITEMLOC\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ITEMLOC\Lookup.Inputs[Lookup Input].Columns[COMPANY]"
+                      cachedDataType="i2"
+                      cachedName="COMPANY"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[COMPANY]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">COMPANY</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ITEMLOC\Lookup.Inputs[Lookup Input].Columns[LOCATION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="LOCATION"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LOCATION]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">LOCATION</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ITEMLOC\Lookup.Inputs[Lookup Input].Columns[ITEM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="32"
+                      cachedName="ITEM"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ITEM]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ITEM</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\ITEMLOC\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_COMPANY]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_COMPANY]"
+                      name="DEST_COMPANY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">COMPANY</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LOCATION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="5"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LOCATION]"
+                      name="DEST_LOCATION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">LOCATION</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_ITEM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="32"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_ITEM]"
+                      name="DEST_ITEM"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ITEM</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_GL_CATEGORY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="4"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_GL_CATEGORY]"
+                      name="DEST_GL_CATEGORY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">GL_CATEGORY</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_UOM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="4"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_UOM]"
+                      name="DEST_UOM"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">UOM</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_SOH_QTY]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_SOH_QTY]"
+                      name="DEST_SOH_QTY"
+                      precision="13"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SOH_QTY</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_PREFER_BIN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="7"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_PREFER_BIN]"
+                      name="DEST_PREFER_BIN"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">PREFER_BIN</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_MIN_ORDER]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_MIN_ORDER]"
+                      name="DEST_MIN_ORDER"
+                      precision="13"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">MIN_ORDER</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_MAX_ORDER]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_MAX_ORDER]"
+                      name="DEST_MAX_ORDER"
+                      precision="13"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">MAX_ORDER</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_REORDER_QTY]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_REORDER_QTY]"
+                      name="DEST_REORDER_QTY"
+                      precision="13"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">REORDER_QTY</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_REORDER_POINT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_REORDER_POINT]"
+                      name="DEST_REORDER_POINT"
+                      precision="13"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">REORDER_POINT</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LEADTIME_DAYS]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LEADTIME_DAYS]"
+                      name="DEST_LEADTIME_DAYS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">LEADTIME_DAYS</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LAST_ISSUE_DT]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LAST_ISSUE_DT]"
+                      name="DEST_LAST_ISSUE_DT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">LAST_ISSUE_DT</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_UPDATE_TIME]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_UPDATE_TIME]"
+                      name="DEST_UPDATE_TIME"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">UPDATE_TIME</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LAST_ISS_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_LAST_ISS_COST]"
+                      name="DEST_LAST_ISS_COST"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">LAST_ISS_COST</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_AVERAGE_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_AVERAGE_COST]"
+                      name="DEST_AVERAGE_COST"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">AVERAGE_COST</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_ADDED_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_ADDED_DATE]"
+                      name="DEST_ADDED_DATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ADDED_DATE</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_ACTIVE_STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="1"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_ACTIVE_STATUS]"
+                      name="DEST_ACTIVE_STATUS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ACTIVE_STATUS</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="30"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD1]"
+                      name="DEST_USER_FIELD1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">USER_FIELD1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="30"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD2]"
+                      name="DEST_USER_FIELD2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">USER_FIELD2</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD3]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="30"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD3]"
+                      name="DEST_USER_FIELD3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">USER_FIELD3</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N1]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N1]"
+                      name="DEST_USER_FIELD_N1"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">USER_FIELD_N1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N2]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N2]"
+                      name="DEST_USER_FIELD_N2"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">USER_FIELD_N2</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N3]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_USER_FIELD_N3]"
+                      name="DEST_USER_FIELD_N3"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">USER_FIELD_N3</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_CONSIGNMENT_FL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="1"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output].Columns[DEST_CONSIGNMENT_FL]"
+                      name="DEST_CONSIGNMENT_FL"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CONSIGNMENT_FL</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ITEMLOC\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\ITEMLOC\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ITEMLOC\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\ITEMLOC\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ITEMLOC\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ITEMLOC\Source ITEMLOC"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source ITEMLOC"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+COMPANY,
+LOCATION,
+ITEM,
+GL_CATEGORY,
+UOM,
+SOH_QTY,
+PREFER_BIN,
+MIN_ORDER,
+MAX_ORDER,
+REORDER_QTY,
+REORDER_POINT,
+LEADTIME_DAYS,
+case when LAST_ISSUE_DT &lt; '1900-01-01' then '1900-01-01' else convert(datetime,LAST_ISSUE_DT,112) end as LAST_ISSUE_DT,
+UPDATE_TIME,
+LAST_ISS_COST,
+AVERAGE_COST,
+case when ADDED_DATE &lt; '1900-01-01' then '1900-01-01' else convert(datetime,ADDED_DATE,112) end as ADDED_DATE,
+ACTIVE_STATUS,
+USER_FIELD1,
+USER_FIELD2,
+USER_FIELD3,
+USER_FIELD_N1,
+USER_FIELD_N2,
+USER_FIELD_N3,
+CONSIGNMENT_FL
+FROM LAWSON.ITEMLOC</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ITEMLOC\Source ITEMLOC.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BlueBin]"
+                  connectionManagerRefId="Package.ConnectionManagers[BlueBin]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[COMPANY]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[COMPANY]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[COMPANY]"
+                      name="COMPANY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LOCATION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[LOCATION]"
+                      length="5"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LOCATION]"
+                      name="LOCATION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ITEM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[ITEM]"
+                      length="32"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ITEM]"
+                      name="ITEM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[GL_CATEGORY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[GL_CATEGORY]"
+                      length="4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[GL_CATEGORY]"
+                      name="GL_CATEGORY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UOM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[UOM]"
+                      length="4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UOM]"
+                      name="UOM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[SOH_QTY]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[SOH_QTY]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[SOH_QTY]"
+                      name="SOH_QTY"
+                      precision="13"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[PREFER_BIN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[PREFER_BIN]"
+                      length="7"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[PREFER_BIN]"
+                      name="PREFER_BIN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MIN_ORDER]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[MIN_ORDER]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MIN_ORDER]"
+                      name="MIN_ORDER"
+                      precision="13"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MAX_ORDER]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[MAX_ORDER]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MAX_ORDER]"
+                      name="MAX_ORDER"
+                      precision="13"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_QTY]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[REORDER_QTY]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_QTY]"
+                      name="REORDER_QTY"
+                      precision="13"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_POINT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[REORDER_POINT]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_POINT]"
+                      name="REORDER_POINT"
+                      precision="13"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LEADTIME_DAYS]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[LEADTIME_DAYS]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LEADTIME_DAYS]"
+                      name="LEADTIME_DAYS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISSUE_DT]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[LAST_ISSUE_DT]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISSUE_DT]"
+                      name="LAST_ISSUE_DT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISS_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[LAST_ISS_COST]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISS_COST]"
+                      name="LAST_ISS_COST"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[AVERAGE_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[AVERAGE_COST]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[AVERAGE_COST]"
+                      name="AVERAGE_COST"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ADDED_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[ADDED_DATE]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ADDED_DATE]"
+                      name="ADDED_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ACTIVE_STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[ACTIVE_STATUS]"
+                      length="1"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ACTIVE_STATUS]"
+                      name="ACTIVE_STATUS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD1]"
+                      length="30"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD1]"
+                      name="USER_FIELD1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD2]"
+                      length="30"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD2]"
+                      name="USER_FIELD2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD3]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD3]"
+                      length="30"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD3]"
+                      name="USER_FIELD3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N1]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD_N1]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N1]"
+                      name="USER_FIELD_N1"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N2]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD_N2]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N2]"
+                      name="USER_FIELD_N2"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N3]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD_N3]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N3]"
+                      name="USER_FIELD_N3"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[CONSIGNMENT_FL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[CONSIGNMENT_FL]"
+                      length="1"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[CONSIGNMENT_FL]"
+                      name="CONSIGNMENT_FL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UPDATE_TIME]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[UPDATE_TIME]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UPDATE_TIME]"
+                      name="UPDATE_TIME"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[COMPANY]"
+                      dataType="i2"
+                      name="COMPANY" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[LOCATION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="LOCATION" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[ITEM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="ITEM" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[GL_CATEGORY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="GL_CATEGORY" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[UOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="UOM" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[SOH_QTY]"
+                      dataType="numeric"
+                      name="SOH_QTY"
+                      precision="13"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[PREFER_BIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="PREFER_BIN" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[MIN_ORDER]"
+                      dataType="numeric"
+                      name="MIN_ORDER"
+                      precision="13"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[MAX_ORDER]"
+                      dataType="numeric"
+                      name="MAX_ORDER"
+                      precision="13"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[REORDER_QTY]"
+                      dataType="numeric"
+                      name="REORDER_QTY"
+                      precision="13"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[REORDER_POINT]"
+                      dataType="numeric"
+                      name="REORDER_POINT"
+                      precision="13"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[LEADTIME_DAYS]"
+                      dataType="i2"
+                      name="LEADTIME_DAYS" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[LAST_ISSUE_DT]"
+                      dataType="dbTimeStamp"
+                      name="LAST_ISSUE_DT" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[LAST_ISS_COST]"
+                      dataType="numeric"
+                      name="LAST_ISS_COST"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[AVERAGE_COST]"
+                      dataType="numeric"
+                      name="AVERAGE_COST"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[ADDED_DATE]"
+                      dataType="dbTimeStamp"
+                      name="ADDED_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[ACTIVE_STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ACTIVE_STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="USER_FIELD1" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="USER_FIELD2" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="USER_FIELD3" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD_N1]"
+                      dataType="numeric"
+                      name="USER_FIELD_N1"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD_N2]"
+                      dataType="numeric"
+                      name="USER_FIELD_N2"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[USER_FIELD_N3]"
+                      dataType="numeric"
+                      name="USER_FIELD_N3"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[CONSIGNMENT_FL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="CONSIGNMENT_FL" />
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].ExternalColumns[UPDATE_TIME]"
+                      dataType="i4"
+                      name="UPDATE_TIME" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[COMPANY]"
+                      dataType="i2"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[COMPANY]"
+                      name="COMPANY" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[LOCATION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[LOCATION]"
+                      name="LOCATION" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[ITEM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[ITEM]"
+                      name="ITEM" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[GL_CATEGORY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[GL_CATEGORY]"
+                      name="GL_CATEGORY" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[UOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[UOM]"
+                      name="UOM" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[SOH_QTY]"
+                      dataType="numeric"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[SOH_QTY]"
+                      name="SOH_QTY"
+                      precision="13"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[PREFER_BIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[PREFER_BIN]"
+                      name="PREFER_BIN" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[MIN_ORDER]"
+                      dataType="numeric"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[MIN_ORDER]"
+                      name="MIN_ORDER"
+                      precision="13"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[MAX_ORDER]"
+                      dataType="numeric"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[MAX_ORDER]"
+                      name="MAX_ORDER"
+                      precision="13"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[REORDER_QTY]"
+                      dataType="numeric"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[REORDER_QTY]"
+                      name="REORDER_QTY"
+                      precision="13"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[REORDER_POINT]"
+                      dataType="numeric"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[REORDER_POINT]"
+                      name="REORDER_POINT"
+                      precision="13"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[LEADTIME_DAYS]"
+                      dataType="i2"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[LEADTIME_DAYS]"
+                      name="LEADTIME_DAYS" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[LAST_ISSUE_DT]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[LAST_ISSUE_DT]"
+                      name="LAST_ISSUE_DT" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[UPDATE_TIME]"
+                      dataType="i4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[UPDATE_TIME]"
+                      name="UPDATE_TIME" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[LAST_ISS_COST]"
+                      dataType="numeric"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[LAST_ISS_COST]"
+                      name="LAST_ISS_COST"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[AVERAGE_COST]"
+                      dataType="numeric"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[AVERAGE_COST]"
+                      name="AVERAGE_COST"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[ADDED_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[ADDED_DATE]"
+                      name="ADDED_DATE" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[ACTIVE_STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[ACTIVE_STATUS]"
+                      name="ACTIVE_STATUS" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD1]"
+                      name="USER_FIELD1" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD2]"
+                      name="USER_FIELD2" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD3]"
+                      name="USER_FIELD3" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD_N1]"
+                      dataType="numeric"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD_N1]"
+                      name="USER_FIELD_N1"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD_N2]"
+                      dataType="numeric"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD_N2]"
+                      name="USER_FIELD_N2"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD_N3]"
+                      dataType="numeric"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[USER_FIELD_N3]"
+                      name="USER_FIELD_N3"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[CONSIGNMENT_FL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[CONSIGNMENT_FL]"
+                      name="CONSIGNMENT_FL" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ITEMLOC\Update Changed Rows"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Executes an SQL command for each row in a dataset."
+              name="Update Changed Rows"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE ITEMLOC
+SET
+GL_CATEGORY=?,
+UOM=?,
+SOH_QTY=?,
+PREFER_BIN=?,
+MIN_ORDER=?,
+MAX_ORDER=?,
+REORDER_QTY=?,
+REORDER_POINT=?,
+LEADTIME_DAYS=?,
+LAST_ISSUE_DT=?,
+UPDATE_TIME=?,
+LAST_ISS_COST=?,
+AVERAGE_COST=?,
+ACTIVE_STATUS=?,
+USER_FIELD1=?,
+USER_FIELD2=?,
+USER_FIELD3=?,
+USER_FIELD_N1=?,
+USER_FIELD_N2=?,
+USER_FIELD_N3=?,
+CONSIGNMENT_FL=?
+
+WHERE
+COMPANY = ?
+AND
+LOCATION = ?
+AND
+ITEM = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ITEMLOC\Update Changed Rows.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BlueBin]"
+                  connectionManagerRefId="Package.ConnectionManagers[BlueBin]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[GL_CATEGORY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="GL_CATEGORY"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[GL_CATEGORY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[UOM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="UOM"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UOM]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[SOH_QTY]"
+                      cachedDataType="numeric"
+                      cachedName="SOH_QTY"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[SOH_QTY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[PREFER_BIN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="PREFER_BIN"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[PREFER_BIN]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[MIN_ORDER]"
+                      cachedDataType="numeric"
+                      cachedName="MIN_ORDER"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MIN_ORDER]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[MAX_ORDER]"
+                      cachedDataType="numeric"
+                      cachedName="MAX_ORDER"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[MAX_ORDER]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[REORDER_QTY]"
+                      cachedDataType="numeric"
+                      cachedName="REORDER_QTY"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_QTY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[REORDER_POINT]"
+                      cachedDataType="numeric"
+                      cachedName="REORDER_POINT"
+                      cachedPrecision="13"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[REORDER_POINT]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[LEADTIME_DAYS]"
+                      cachedDataType="i2"
+                      cachedName="LEADTIME_DAYS"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LEADTIME_DAYS]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[LAST_ISSUE_DT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LAST_ISSUE_DT"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISSUE_DT]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[UPDATE_TIME]"
+                      cachedDataType="i4"
+                      cachedName="UPDATE_TIME"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[UPDATE_TIME]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[LAST_ISS_COST]"
+                      cachedDataType="numeric"
+                      cachedName="LAST_ISS_COST"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LAST_ISS_COST]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[AVERAGE_COST]"
+                      cachedDataType="numeric"
+                      cachedName="AVERAGE_COST"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[AVERAGE_COST]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[ACTIVE_STATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="ACTIVE_STATUS"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ACTIVE_STATUS]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[USER_FIELD1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="USER_FIELD1"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD1]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[USER_FIELD2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="USER_FIELD2"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_15]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD2]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[USER_FIELD3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="USER_FIELD3"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_16]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD3]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[USER_FIELD_N1]"
+                      cachedDataType="numeric"
+                      cachedName="USER_FIELD_N1"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_17]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N1]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[USER_FIELD_N2]"
+                      cachedDataType="numeric"
+                      cachedName="USER_FIELD_N2"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_18]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N2]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[USER_FIELD_N3]"
+                      cachedDataType="numeric"
+                      cachedName="USER_FIELD_N3"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_19]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[USER_FIELD_N3]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[CONSIGNMENT_FL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="CONSIGNMENT_FL"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_20]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[CONSIGNMENT_FL]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[COMPANY]"
+                      cachedDataType="i2"
+                      cachedName="COMPANY"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_21]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[COMPANY]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[LOCATION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="LOCATION"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_22]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[LOCATION]" />
+                    <inputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].Columns[ITEM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="32"
+                      cachedName="ITEM"
+                      externalMetadataColumnId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_23]"
+                      lineageId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output].Columns[ITEM]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="numeric"
+                      name="Param_2"
+                      precision="13"
+                      scale="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="numeric"
+                      name="Param_4"
+                      precision="13"
+                      scale="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="numeric"
+                      name="Param_5"
+                      precision="13"
+                      scale="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="numeric"
+                      name="Param_6"
+                      precision="13"
+                      scale="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      dataType="numeric"
+                      name="Param_7"
+                      precision="13"
+                      scale="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="i2"
+                      name="Param_8">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      dataType="dbTimeStamp"
+                      name="Param_9">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      dataType="i4"
+                      name="Param_10">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      dataType="numeric"
+                      name="Param_11"
+                      precision="18"
+                      scale="5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      dataType="numeric"
+                      name="Param_12"
+                      precision="18"
+                      scale="5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Param_13">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Param_14">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_15]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Param_15">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_16]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Param_16">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_17]"
+                      dataType="numeric"
+                      name="Param_17"
+                      precision="18"
+                      scale="5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_18]"
+                      dataType="numeric"
+                      name="Param_18"
+                      precision="18"
+                      scale="5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_19]"
+                      dataType="numeric"
+                      name="Param_19"
+                      precision="18"
+                      scale="5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_20]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Param_20">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_21]"
+                      dataType="i2"
+                      name="Param_21">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_22]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Param_22">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input].ExternalColumns[Param_23]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="Param_23">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ITEMLOC\Update Changed Rows.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ITEMLOC\Update Changed Rows.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ITEMLOC\Update Changed Rows.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ITEMLOC\Update Changed Rows.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ITEMLOC\Update Changed Rows.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ITEMLOC.Paths[Changed Rows]"
+              endId="Package\ITEMLOC\Update Changed Rows.Inputs[OLE DB Command Input]"
+              name="Changed Rows"
+              startId="Package\ITEMLOC\Conditional Split.Outputs[Changed Rows]" />
+            <path
+              refId="Package\ITEMLOC.Paths[Lookup Match Output]"
+              endId="Package\ITEMLOC\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\ITEMLOC\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\ITEMLOC.Paths[New Rows]"
+              endId="Package\ITEMLOC\Insert New Rows.Inputs[OLE DB Destination Input]"
+              name="New Rows"
+              startId="Package\ITEMLOC\Conditional Split.Outputs[New Rows]" />
+            <path
+              refId="Package\ITEMLOC.Paths[OLE DB Source Output]"
+              endId="Package\ITEMLOC\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\ITEMLOC\Source ITEMLOC.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\ITEMLOC"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ITEMLOC">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="159,42"
+          Id="Package\ITEMLOC\Insert New Rows"
+          TopLeft="5.50000000000006,311.5" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\ITEMLOC\Lookup"
+          TopLeft="261.5,107.5" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\ITEMLOC\Update Changed Rows"
+          TopLeft="225,311.5" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\ITEMLOC\Source ITEMLOC"
+          TopLeft="239,5.5" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\ITEMLOC\Conditional Split"
+          TopLeft="240.5,209.5" />
+        <EdgeLayout
+          Id="Package\ITEMLOC.Paths[OLE DB Source Output]"
+          TopLeft="318,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ITEMLOC.Paths[New Rows]"
+          TopLeft="293.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-208.5,60"
+              Start="0,0"
+              End="-208.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.367816091954" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.367816091954"
+                    Point2="0,24.367816091954"
+                    Point3="-4,24.367816091954" />
+                  <mssgle:LineSegment
+                    End="-204.5,24.367816091954" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-204.5,24.367816091954"
+                    Point2="-208.5,24.367816091954"
+                    Point3="-208.5,28.367816091954" />
+                  <mssgle:LineSegment
+                    End="-208.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-127.787578125,29.367816091954,47.07515625,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ITEMLOC.Paths[Lookup Match Output]"
+          TopLeft="318,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ITEMLOC.Paths[Changed Rows]"
+          TopLeft="342.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.5,60"
+              Start="0,0"
+              End="-24.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.367816091954" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.367816091954"
+                    Point2="0,24.367816091954"
+                    Point3="-4,24.367816091954" />
+                  <mssgle:LineSegment
+                    End="-20.5,24.367816091954" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.5,24.367816091954"
+                    Point2="-24.5,24.367816091954"
+                    Point3="-24.5,28.367816091954" />
+                  <mssgle:LineSegment
+                    End="-24.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-45.69009765625,29.367816091954,66.8801953125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ITEMLOC\Source ITEMLOC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
